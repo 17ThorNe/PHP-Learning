@@ -48,7 +48,7 @@
             $pdoexec = $pdoresult->execute(array(":code"=>$code, ":name"=>$name, ":type"=>$type, ":price"=>$price, ":date"=>$date));
             
             if($pdoexec){
-                echo "Data inserted to your database!"; 
+                echo "Data inserted to your basedata!"; 
             }else{
                 echo "Data insert failed!"; 
             }
