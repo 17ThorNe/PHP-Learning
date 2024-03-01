@@ -64,7 +64,7 @@
         
                 echo '<table border="1">';
                 echo '<tr>
-                        <th>proCodeF</th>
+                        <th>proCodeHELLO</th>
                         <th>proName</th>
                         <th>proType</th>
                         <th>proPrice</th>
