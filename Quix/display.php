@@ -29,7 +29,7 @@ use function PHPSTORM_META\sql_injection_subst;
                 </select>
             </div>
             <div>
-                <label>Enter your Date of birth : </label>
+                <label>Enter your Date of Birth : </label>
                 <input type="date" name="dob" require>
             </div>
             <div>
