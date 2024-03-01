@@ -62,7 +62,7 @@ use function PHPSTORM_META\sql_injection_subst;
         <thead>
             <tr>
                 <th>ID</th>
-                <th>NAME</th>
+                <th>name</th>
                 <th>SEX</th>
                 <th>DOB</th>
                 <th>PHONE</th>
