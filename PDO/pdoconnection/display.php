@@ -1,4 +1,16 @@
-<?php include ("connect.php") ?>
+<?php 
+    $host = "localhost";
+    $dbname = "product";
+    $username = "root";
+    $password = "";
+
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("Connection failed: " . $e->getMessage());
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,18 +45,11 @@
         </div>
         <div>
             <button type="submit" name="btninsert">INSERT</button>
+            <button type="submit" name="btnread">READ</button>
         </div>
     </form>
-    <?php
-        $host = "localhost";
-        $dbname = "product";
-        $username = "root";
-        $password = "";
-    
-        try {
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+    <?php    
+        try {    
             if(isset($_POST['btninsert'])){
                 $i = $_POST['id'];
                 $n = $_POST['name'];
@@ -54,8 +59,7 @@
     
                 $query = "INSERT INTO `item`(`proCode`, `proName`, `proType`, `proPrice`, `proDate`) VALUES (:i, :n, :t, :p, :d)";
                 $result = $pdo->prepare($query);
-    
-                // Execute the query after selecting the database
+
                 $execute = $result->execute(array(":i"=>$i,":n"=>$n,":t"=>$t,":p"=>$p,":d"=>$d));
     
                 if($execute){
@@ -68,5 +72,47 @@
             die("Connection failed: " . $e->getMessage());
         }
     ?>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                if(isset($_POST['btnread'])){
+                    $selectQuery = "SELECT * FROM `item`"; 
+                    $result = $pdo->query($selectQuery); 
+            
+                    if($result){
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                            $id = $row['proId']; 
+                            $c = $row['proCode'];
+                            $n = $row['proName'];
+                            $t = $row['proType'];
+                            $p = $row['proPrice'];
+                            $d = $row['proDate'];
+                            
+                            echo '
+                                <tr>
+                                    <td>'.$id.'</td>
+                                    <td>'.$c.'</td>
+                                    <td>'.$n.'</td>
+                                    <td>'.$t.'</td>
+                                    <td>'.$p.'</td>
+                                    <td>'.$d.'</td>
+                                </tr>
+                            '; 
+                        }
+                    }
+                }
+            ?>
+        </tbody>
+    </table>
 </body>
 </html>
