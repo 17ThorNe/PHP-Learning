@@ -17,6 +17,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+        td{
+            text-align: center;
+            color: orange;
+        }
+    </style>
 </head>
 <body>
     <form action="" method="post">
@@ -45,7 +59,6 @@
         </div>
         <div>
             <button type="submit" name="btninsert">INSERT</button>
-            <button type="submit" name="btnread">READ</button>
         </div>
     </form>
     <?php    
@@ -85,7 +98,7 @@
         </thead>
         <tbody>
             <?php
-                if(isset($_POST['btnread'])){
+                if(isset($_POST['btninsert'])){
                     $selectQuery = "SELECT * FROM `item`"; 
                     $result = $pdo->query($selectQuery); 
             
