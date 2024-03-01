@@ -54,10 +54,7 @@
             }
         }
         if(isset($_POST['btndisplay'])){
-            try {
-                $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
+            try {        
                 $selectQuery = "SELECT * FROM `item`";
                 $pdoresult = $pdo->query($selectQuery);
                 $rows = $pdoresult->fetchAll(PDO::FETCH_ASSOC);
